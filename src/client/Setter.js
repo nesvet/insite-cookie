@@ -1,7 +1,7 @@
 import { headers } from "../common";
 
 
-export class CookieSetterClient {
+export class CookieSetter {
 	constructor(ws, options = {}) {
 		
 		const {

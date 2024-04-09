@@ -1,28 +1,28 @@
 import crypto from "node:crypto";
-import { parseCookie } from "../../parse";
-import { tokenMap } from "../../tokenMap";
 import { headers } from "../common";
+import { parseCookie } from "./parse";
+import { tokenMap } from "./tokenMap";
 
 
 const cookieTokenTimeout = 2000;
 const cookieSessionIdSymbol = Symbol("cookieSessionId");
 
 
-export class CookieSetterServer {
+export class CookieSetter {
 	constructor(wss, { users, domain, maxAge }) {
 		wss.cookieSetter = this;
 		
-		this.domain = domain ?? process.env.HOST;
+		this.domain = domain ?? process.env.INSITE_HOST;
 		this.maxAge = maxAge ?? users?.sessions.collection.expireAfterSeconds;
 		
-		wss.options.WebSocket.prototype.setCookie = CookieSetterServer.set;
-		wss.options.WebSocket.prototype.unsetCookie = CookieSetterServer.unset;
+		wss.options.WebSocket.prototype.setCookie = CookieSetter.set;
+		wss.options.WebSocket.prototype.unsetCookie = CookieSetter.unset;
 		
 		if (users) {
 			this.users = users;
 			
-			wss.on("client-connect", CookieSetterServer.handleClientConnect);
-			wss.on("client-session", CookieSetterServer.handleClientSession);
+			wss.on("client-connect", CookieSetter.handleClientConnect);
+			wss.on("client-session", CookieSetter.handleClientSession);
 		}
 		
 	}

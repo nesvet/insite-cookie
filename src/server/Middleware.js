@@ -1,7 +1,7 @@
 import { tokenMap } from "./tokenMap";
 
 
-export class CookieMiddleware {
+class InSiteCookieMiddleware {
 	constructor(options = {}) {
 		const {
 			requestRegExp = /^\/cookie\/?\?/
@@ -19,7 +19,7 @@ export class CookieMiddleware {
 		if (token && tokenMap.has(token))
 			response.writeHead(200, {
 				"Content-Type": "text/plain; charset=utf-8",
-				"Set-Cookie": CookieMiddleware.cookify(...tokenMap.getWithTimeout(token))
+				"Set-Cookie": InSiteCookieMiddleware.cookify(...tokenMap.getWithTimeout(token))
 			}).end();
 		else
 			return false;
@@ -58,3 +58,5 @@ export class CookieMiddleware {
 	}
 	
 }
+
+export { InSiteCookieMiddleware as CookieMiddleware };
