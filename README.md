@@ -9,5 +9,5 @@ $ npm install insite-cookie
 Or
 
 ```sh
-$ yarn add insite-cookie
+$ bun add insite-cookie
 ```
