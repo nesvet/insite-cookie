@@ -1,6 +1,6 @@
 {
   "name": "insite-cookie",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "Cookie support for inSite",
   "type": "module",
   "main": "./dist/server.js",
@@ -9,7 +9,7 @@
     "./server": "./dist/server.js",
     "./client": "./dist/client.js"
   },
-  "packageManager": "bun@1.1.9",
+  "packageManager": "bun@1.1.12",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bun .conveyer.js"
