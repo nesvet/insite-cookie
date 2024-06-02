@@ -21,9 +21,6 @@ new Conveyer([
 		outfile: path.resolve(distDir, "server.js"),
 		platform: "node",
 		target: "node20",
-		define: {
-			"process.env.NODE_ENV": JSON.stringify(NODE_ENV)
-		},
 		...common
 	}),
 	
@@ -33,6 +30,9 @@ new Conveyer([
 		outfile: path.resolve(distDir, "client.js"),
 		platform: "neutral",
 		target: "es2020",
+		define: {
+			"process.env.NODE_ENV": JSON.stringify(NODE_ENV)
+		},
 		...common
 	})
 	

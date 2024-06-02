@@ -1,6 +1,6 @@
 {
   "name": "insite-cookie",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "Cookie support for inSite",
   "type": "module",
   "main": "./dist/server.js",
