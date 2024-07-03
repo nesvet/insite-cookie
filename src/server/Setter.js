@@ -15,9 +15,6 @@ export class CookieSetter {
 		this.domain = domain ?? process.env.INSITE_HOST;
 		this.maxAge = maxAge ?? users?.sessions.collection.expireAfterSeconds;
 		
-		wss.options.WebSocket.prototype.setCookie = CookieSetter.set;
-		wss.options.WebSocket.prototype.unsetCookie = CookieSetter.unset;
-		
 		if (users) {
 			this.users = users;
 			
@@ -51,7 +48,11 @@ export class CookieSetter {
 	
 	
 	static handleClientConnect(ws, request) {
-		ws[cookieSessionIdSymbol] = null;
+		Object.assign(ws, {
+			setCookie: CookieSetter.set,
+			unsetCookie: CookieSetter.unset,
+			[cookieSessionIdSymbol]: null
+		});
 		
 		if (request.headers.cookie) {
 			const { sessionId = null } = parseCookie(request.headers.cookie);
