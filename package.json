@@ -1,6 +1,6 @@
 {
   "name": "insite-cookie",
-  "version": "1.0.45",
+  "version": "1.0.46",
   "description": "Cookie support for inSite",
   "type": "module",
   "main": "./dist/server.js",
@@ -9,7 +9,7 @@
     "./server": "./dist/server.js",
     "./client": "./dist/client.js"
   },
-  "packageManager": "bun@1.1.12",
+  "packageManager": "bun@1.1.17",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bun .conveyer.js"
@@ -27,10 +27,10 @@
   "author": "Eugene Nesvetaev <dev@nesvet.dev> (https://nesvet.dev/)",
   "license": "MIT",
   "dependencies": {
-    "insite-ws": "^1"
+    "insite-ws": "^1.0.406"
   },
   "devDependencies": {
-    "@nesvet/conveyer": "^2",
+    "@nesvet/conveyer": "^2.2.1",
     "@nesvet/eslint-config": "^2.0.21"
   }
 }
