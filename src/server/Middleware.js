@@ -14,16 +14,15 @@ class InSiteCookieMiddleware {
 	}
 	
 	handler = (request, response) => {
-		const token = request.url.split("?")[1];
+		const [ , token ] = request.url.split("?");
 		
 		if (token && tokenMap.has(token))
-			response.writeHead(200, {
+			return response.writeHead(200, {
 				"Content-Type": "text/plain; charset=utf-8",
 				"Set-Cookie": InSiteCookieMiddleware.cookify(...tokenMap.getWithTimeout(token))
 			}).end();
-		else
-			return false;
 		
+		return false;
 	};
 	
 	

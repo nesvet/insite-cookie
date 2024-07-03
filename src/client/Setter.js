@@ -1,6 +1,9 @@
 import { headers } from "../common";
 
 
+/* eslint-disable unicorn/prefer-add-event-listener */
+
+
 export class CookieSetter {
 	constructor(ws, options = {}) {
 		
@@ -25,6 +28,7 @@ export class CookieSetter {
 	}
 	
 	#handleSet = token => {
+		
 		const xhr = new XMLHttpRequest();
 		
 		xhr.onload = this.onload;
