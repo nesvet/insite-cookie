@@ -17,8 +17,8 @@ new Conveyer([
 	
 	new ESBuild({
 		title: "Server",
-		entryPoints: [ "src/server/index.js" ],
-		outfile: path.resolve(distDir, "server.js"),
+		entryPoints: [ "src/server/index.ts" ],
+		outfile: path.resolve(distDir, "server", "index.js"),
 		platform: "node",
 		target: "node20",
 		...common
@@ -26,8 +26,8 @@ new Conveyer([
 	
 	new ESBuild({
 		title: "Client",
-		entryPoints: [ "src/client/index.js" ],
-		outfile: path.resolve(distDir, "client.js"),
+		entryPoints: [ "src/client/index.ts" ],
+		outfile: path.resolve(distDir, "client", "index.js"),
 		platform: "neutral",
 		target: "es2020",
 		define: {

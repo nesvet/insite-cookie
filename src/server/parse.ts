@@ -1,4 +1,4 @@
-export function parseCookie(cookie) {
+export function parseCookie(cookie: string) {
 	return cookie ? cookie.split(/;\s*/).reduce((object, keyEqValue) => {
 		const [ key, value ] = keyEqValue.split(/=/);
 		
@@ -9,5 +9,5 @@ export function parseCookie(cookie) {
 		}
 		
 		return object;
-	}, {}) : {};
+	}, {} as Record<string, unknown>) : {};
 }

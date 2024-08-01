@@ -6,13 +6,14 @@
   "main": "./dist/server.js",
   "module": "./dist/server.js",
   "exports": {
-    "./server": "./dist/server.js",
-    "./client": "./dist/client.js"
+    "./server": "./dist/server/index.js",
+    "./client": "./dist/client/index.js"
   },
   "packageManager": "bun@1.1.17",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bun .conveyer.js"
+    "build": "bun .conveyer.js",
+    "postbuild": "tsc -p ."
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,12 @@
   },
   "devDependencies": {
     "@nesvet/conveyer": "^2.2.1",
-    "@nesvet/eslint-config": "^2.0.21"
+    "@nesvet/eslint-config": "^2.0.24",
+    "@types/node": "^20.14.13",
+    "@types/ws": "^8.5.12",
+    "insite-users-server": "^2.0.0",
+    "insite-users-server-ws": "^2.0.0",
+    "insite-subscriptions-server": "^2.0.1",
+    "typescript": "^5.5.4"
   }
 }
