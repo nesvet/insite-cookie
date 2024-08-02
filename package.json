@@ -29,15 +29,15 @@
   "license": "MIT",
   "dependencies": {
     "@nesvet/n": "^1.1.1",
-    "insite-http": "^2.0.1",
-    "insite-ws": "^2.0.9"
+    "insite-http": "^2.0.3",
+    "insite-ws": "^2.0.11"
   },
   "devDependencies": {
     "@nesvet/conveyer": "^2.2.1",
     "@nesvet/eslint-config": "^2.0.24",
     "@types/node": "^20.14.13",
     "@types/ws": "^8.5.12",
-    "insite-users-server": "^2.0.0",
+    "insite-users-server": "^2.0.1",
     "insite-users-server-ws": "^2.0.0",
     "insite-subscriptions-server": "^2.0.1",
     "typescript": "^5.5.4"
