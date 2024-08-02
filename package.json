@@ -37,7 +37,7 @@
     "@nesvet/eslint-config": "^2.0.24",
     "@types/node": "^20.14.13",
     "@types/ws": "^8.5.12",
-    "insite-users-server": "^2.0.1",
+    "insite-users-server": "^2.0.2",
     "insite-users-server-ws": "^2.0.0",
     "insite-subscriptions-server": "^2.0.2",
     "typescript": "^5.5.4"
