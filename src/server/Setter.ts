@@ -1,10 +1,8 @@
 import crypto from "node:crypto";
 import type { IncomingMessage } from "node:http";
-import type { WithUser } from "insite-subscriptions-server/ws";
-import type { InSiteWebSocketServerClient } from "insite-ws/server";
 import { random, setWithTimeout } from "@nesvet/n";
 import type { AbilitiesSchema } from "insite-users-server";
-import type { UsersServer } from "insite-users-server-ws";
+import type { UsersServer, WSSCWithUser } from "insite-users-server-ws";
 import { headers } from "../common";
 import { parseCookie } from "./parse";
 import { tokenMap } from "./tokenMap";
@@ -31,13 +29,13 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	}
 	
-	#wsSessionIdMap = new WeakMap<WithUser<InSiteWebSocketServerClient, AS>, null | string>();
+	#wsSessionIdMap = new WeakMap<WSSCWithUser<AS>, null | string>();
 	
 	usersServer;
 	domain;
 	maxAge;
 	
-	set(wssc: WithUser<InSiteWebSocketServerClient, AS>, cookie: Cookie, options: CookieOptions) {
+	set(wssc: WSSCWithUser<AS>, cookie: Cookie, options: CookieOptions) {
 		
 		const token = `${Math.round(performance.now() * Number.MAX_SAFE_INTEGER).toString(36)}$${crypto.randomBytes(random(4, 8)).toString("hex")}`;
 		
@@ -47,7 +45,7 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	}
 	
-	unset(wssc: WithUser<InSiteWebSocketServerClient, AS>, names: string[]) {
+	unset(wssc: WSSCWithUser<AS>, names: string[]) {
 		this.set(wssc, names.reduce((cookie, name) => {
 			cookie[name] = "";
 			
@@ -56,7 +54,7 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	}
 	
-	#handleClientConnect = (wssc: WithUser<InSiteWebSocketServerClient, AS>, request: IncomingMessage) => {
+	#handleClientConnect = (wssc: WSSCWithUser<AS>, request: IncomingMessage) => {
 		this.#wsSessionIdMap.set(wssc, null);
 		
 		if (request.headers.cookie) {
@@ -70,7 +68,7 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	};
 	
-	#handleClientSession = (wssc: WithUser<InSiteWebSocketServerClient, AS>) => {
+	#handleClientSession = (wssc: WSSCWithUser<AS>) => {
 		if (this.#wsSessionIdMap.get(wssc) !== wssc.session?._id) {
 			this.#wsSessionIdMap.set(wssc, wssc.session?._id ?? null);
 			
