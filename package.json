@@ -38,8 +38,8 @@
     "@types/node": "^22.1.0",
     "@types/ws": "^8.5.12",
     "insite-users-server": "^2.0.3",
-    "insite-users-server-ws": "^2.0.2",
-    "insite-subscriptions-server": "^2.0.3",
+    "insite-users-server-ws": "^2.0.3",
+    "insite-subscriptions-server": "^2.0.4",
     "typescript": "^5.5.4"
   }
 }
