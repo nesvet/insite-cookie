@@ -1,10 +1,11 @@
-import { type InSiteWebSocket } from "insite-ws/client";
+import type { InSiteWebSocket } from "insite-ws/client";
 import { headers, type Method } from "../common";
 
 
 /* eslint-disable unicorn/prefer-add-event-listener */
 
-type Options = {
+
+export type Options = {
 	method?: Method;
 	url?: string;
 	onload?: (this: XMLHttpRequest, event: ProgressEvent) => unknown;
