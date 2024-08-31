@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import type { IncomingMessage } from "node:http";
 import { random, setWithTimeout } from "@nesvet/n";
-import type { AbilitiesSchema } from "insite-users-server";
+import type { AbilitiesSchema } from "insite-common";
 import type { UsersServer, WSSCWithUser } from "insite-users-server-ws";
 import { headers } from "../common";
 import { parseCookie } from "./parse";
