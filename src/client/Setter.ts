@@ -25,24 +25,24 @@ export class CookieSetter {
 		
 		this.method = method;
 		this.url = url;
-		this.#onload = onload;
-		this.#onerror = onerror;
+		this.onload = onload;
+		this.onerror = onerror;
 		
-		ws.on(`message:${headers.set}`, this.#handleSet);
+		ws.on(`message:${headers.set}`, this.handleSet);
 		
 	}
 	
 	readonly method;
 	readonly url;
-	#onload;
-	#onerror;
+	private onload;
+	private onerror;
 	
-	#handleSet = (token: string) => {
+	private handleSet = (token: string) => {
 		
 		const xhr = new XMLHttpRequest();
 		
-		xhr.onload = this.#onload;
-		xhr.onerror = this.#onerror;
+		xhr.onload = this.onload;
+		xhr.onerror = this.onerror;
 		
 		xhr.open(this.method, `${this.url}?${token}`, true);
 		
