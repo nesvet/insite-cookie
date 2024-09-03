@@ -31,7 +31,7 @@
     "@nesvet/n": "^1.1.7",
     "insite-common": "^2.0.0",
     "insite-http": "^2.0.6",
-    "insite-users-server-ws": "^2.0.17",
+    "insite-users-server-ws": "^2.0.18",
     "insite-ws": "^2.0.17"
   },
   "devDependencies": {
