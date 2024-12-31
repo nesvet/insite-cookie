@@ -26,12 +26,12 @@ export class InSiteCookieMiddleware extends InSiteServerMiddleware {
 		} = options;
 		
 		this.listeners = { GET: [
-			[ requestRegExp, this.handler ]
+			[ requestRegExp, this.#handler ]
 		] };
 		
 	}
 	
-	private handler = (request: IncomingMessage, response: ServerResponse) => {
+	#handler = (request: IncomingMessage, response: ServerResponse) => {
 		const [ , token ] = request.url!.split("?");
 		
 		if (token && tokenMap.has(token))

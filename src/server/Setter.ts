@@ -24,12 +24,12 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		this.domain = domain ?? process.env.INSITE_HOST;
 		this.maxAge = maxAge ?? this.usersServer.users.sessions.collection.expireAfterSeconds;
 		
-		this.usersServer.wss.on("client-connect", this.handleClientConnect);
-		this.usersServer.wss.on("client-session", this.handleClientSession);
+		this.usersServer.wss.on("client-connect", this.#handleClientConnect);
+		this.usersServer.wss.on("client-session", this.#handleClientSession);
 		
 	}
 	
-	private wsSessionIdMap = new WeakMap<WSSCWithUser<AS>, null | string>();
+	#wsSessionIdMap = new WeakMap<WSSCWithUser<AS>, null | string>();
 	
 	usersServer;
 	domain;
@@ -54,13 +54,13 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	}
 	
-	private handleClientConnect = (wssc: WSSCWithUser<AS>, request: IncomingMessage) => {
-		this.wsSessionIdMap.set(wssc, null);
+	#handleClientConnect = (wssc: WSSCWithUser<AS>, request: IncomingMessage) => {
+		this.#wsSessionIdMap.set(wssc, null);
 		
 		if (request.headers.cookie) {
 			const { sessionId = null } = parseCookie(request.headers.cookie) as { sessionId: null | string };
 			
-			this.wsSessionIdMap.set(wssc, sessionId);
+			this.#wsSessionIdMap.set(wssc, sessionId);
 			
 			if (sessionId)
 				this.usersServer.setSession(wssc, sessionId, true);
@@ -68,9 +68,9 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	};
 	
-	private handleClientSession = (wssc: WSSCWithUser<AS>) => {
-		if (this.wsSessionIdMap.get(wssc) !== wssc.session?._id) {
-			this.wsSessionIdMap.set(wssc, wssc.session?._id ?? null);
+	#handleClientSession = (wssc: WSSCWithUser<AS>) => {
+		if (this.#wsSessionIdMap.get(wssc) !== wssc.session?._id) {
+			this.#wsSessionIdMap.set(wssc, wssc.session?._id ?? null);
 			
 			if (wssc.isOpen && wssc.session)
 				this.set(wssc, { sessionId: wssc.session._id }, { domain: this.domain, maxAge: this.maxAge });
