@@ -30,13 +30,13 @@
   "dependencies": {
     "@nesvet/n": "^1.1.22",
     "insite-common": "^2.1.0",
-    "insite-http": "^2.0.7",
-    "insite-users-server-ws": "^2.0.29",
-    "insite-ws": "^2.0.20"
+    "insite-http": "^2.1.0",
+    "insite-users-server-ws": "^2.1.0",
+    "insite-ws": "^2.1.0"
   },
   "devDependencies": {
     "@nesvet/conveyer": "^2.4.2",
-    "@nesvet/eslint-config": "^2.0.46",
+    "@nesvet/eslint-config": "^2.0.47",
     "@types/node": "^22.13.1",
     "@types/ws": "^8.5.14",
     "typescript": "^5.7.3"
