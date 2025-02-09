@@ -1,4 +1,4 @@
-import type { InSiteWebSocket } from "insite-ws/client";
+import type { WS } from "insite-ws/client";
 import { headers, type Method } from "../common";
 
 
@@ -14,7 +14,7 @@ export type Options = {
 
 
 export class CookieSetter {
-	constructor(ws: InSiteWebSocket, options: Options = {}) {
+	constructor(ws: WS, options: Options = {}) {
 		
 		const {
 			method = "GET",
