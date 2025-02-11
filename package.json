@@ -1,6 +1,6 @@
 {
   "name": "insite-cookie",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Cookie support for inSite",
   "type": "module",
   "main": "./dist/server.js",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@nesvet/n": "^1.1.22",
     "insite-common": "^2.1.2",
-    "insite-http": "^2.1.2",
+    "insite-http": "^2.1.3",
     "insite-users-server-ws": "^2.1.2",
     "insite-ws": "^2.1.2"
   },
