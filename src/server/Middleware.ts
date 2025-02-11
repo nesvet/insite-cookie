@@ -22,7 +22,7 @@ export class CookieMiddleware extends ClassMiddleware {
 		super();
 		
 		const {
-			requestRegExp = /^\/cookie\/?\?/
+			path = "/cookie"
 		} = options;
 		
 		this.listeners = { GET: [
