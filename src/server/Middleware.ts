@@ -1,12 +1,11 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
 import { getWithTimeout } from "@nesvet/n";
-import { ClassMiddleware } from "insite-http";
+import { ClassMiddleware, type RequestHandler } from "insite-http";
 import { tokenMap } from "./tokenMap";
 import type { Cookie, CookieOptions } from "./types";
 
 
 type Options = {
-	requestRegExp?: RegExp;
+	path?: RegExp | string;
 };
 
 export type { Options as CookieMiddlewareOptions };
@@ -25,21 +24,20 @@ export class CookieMiddleware extends ClassMiddleware {
 			path = "/cookie"
 		} = options;
 		
-		this.listeners = { GET: [
-			[ requestRegExp, this.#handler ]
-		] };
+		this.listeners = {
+			GET: [ [ path, this.#handler ] ]
+		};
 		
 	}
 	
-	#handler = (request: IncomingMessage, response: ServerResponse) => {
-		const [ , token ] = request.url!.split("?");
+	#handler: RequestHandler = (request, response) => {
+		const token = request.querystring;
 		
 		if (token && tokenMap.has(token))
 			return response.writeHead(200, {
 				"Content-Type": "text/plain; charset=utf-8",
 				"Set-Cookie": CookieMiddleware.cookify(...getWithTimeout(tokenMap, token)!)
 			}).end();
-		
 		
 		return false;
 	};
