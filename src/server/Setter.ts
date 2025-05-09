@@ -50,7 +50,7 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 			cookie[name] = "";
 			
 			return cookie;
-		}, {} as Cookie), { maxAge: 0 });
+		}, {} as Cookie), { domain: this.domain, maxAge: 0 });
 		
 	}
 	
