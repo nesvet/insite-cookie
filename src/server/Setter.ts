@@ -29,7 +29,7 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		
 	}
 	
-	#wsSessionIdMap = new WeakMap<WSSCWithUser<AS>, null | string>();
+	#wsSessionIdMap = new WeakMap<WSSCWithUser<AS>, string | null>();
 	
 	usersServer;
 	domain;
@@ -58,7 +58,7 @@ export class CookieSetter<AS extends AbilitiesSchema> {
 		this.#wsSessionIdMap.set(wssc, null);
 		
 		if (request.headers.cookie) {
-			const { sessionId = null } = parseCookie(request.headers.cookie) as { sessionId: null | string };
+			const { sessionId = null } = parseCookie(request.headers.cookie) as { sessionId: string | null };
 			
 			this.#wsSessionIdMap.set(wssc, sessionId);
 			

@@ -4,7 +4,7 @@ export type CookieOptions = {
 	maxAge?: number;
 	expiresAt?: Date;
 	domain?: string;
-	path?: false | null | string;
+	path?: false | string | null;
 	secure?: boolean;
 	httpOnly?: boolean;
 	sameSite?: string;
