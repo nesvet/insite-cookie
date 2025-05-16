@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@nesvet/n": "^1.2.0",
 		"insite-common": "^2.3.0",
-		"insite-http": "^2.3.0",
+		"insite-http": "^2.3.1",
 		"insite-users-server-ws": "^2.3.0",
 		"insite-ws": "^2.3.0"
 	},
